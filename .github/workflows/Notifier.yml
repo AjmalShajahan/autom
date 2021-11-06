@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Notifier
         env:
-          TELEGRAM_CHAT_ID: ${{ secrets.CHAT_ID}}
-          TELEGRAM_TOKEN: ${{secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID}}
+          BOT_TOKEN: ${{secrets.BOT_TOKEN }}
           INPUT_STATUS: ${{ job.status }}
           STARGAZERS: ${{ github.event.repository.stargazers_count }}
           FORKERS: ${{ github.event.repository.forks_count }}
