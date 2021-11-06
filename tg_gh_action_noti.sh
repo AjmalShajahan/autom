@@ -21,7 +21,7 @@ send_msg() {
 # characters, since they're reserved in bash
 
 if [[ "$GITHUB_EVENT_NAME" == "issues" ]] ; then
-send_msg"
+send_msg "
 ❗️❗️❗️❗️❗️❗️
 
 Issue ${PR_STATE}
@@ -39,7 +39,7 @@ Issue Body : *${IU_BODY}*
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
 elif  [[ "$GITHUB_EVENT_NAME" == "issue_comment" ]] ; then
-send_msg"
+send_msg "
 🗣🗣🗣🗣🗣🗣
 
 Issue ${PR_STATE}
@@ -79,7 +79,7 @@ PR By:          ${GITHUB_ACTOR}
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
 elif  [[ "$GITHUB_EVENT_NAME" == "watch" ]] ; then
-send_msg"
+send_msg "
 ⭐️⭐️⭐️
 ID: ${GITHUB_WORKFLOW}
 
@@ -97,7 +97,7 @@ Fork Count      ${FORKERS}
 
 "
 elif [[ "$GITHUB_EVENT_NAME" == "schedule" ]] ; then
-send_msg"
+send_msg "
 ⏱⏰⏱⏰⏱⏰
 
 ID: ${GITHUB_WORKFLOW}
