@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Notifier
         env:
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID}}
-          TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.CHAT_ID}}
+          TELEGRAM_TOKEN: ${{secrets.BOT_TOKEN }}
           INPUT_STATUS: ${{ job.status }}
           STARGAZERS: ${{ github.event.repository.stargazers_count }}
           FORKERS: ${{ github.event.repository.forks_count }}
@@ -25,4 +25,4 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
           PR_BODY: ${{ github.event.pull_request.body }}
 
-        run: bash -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh)"
+        run: bash -c "$(curl -sL https://raw.githubusercontent.com/AjmalShajahan/autom/development/tg_gh_action_noti.sh)"
