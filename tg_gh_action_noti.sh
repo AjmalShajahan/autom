@@ -22,28 +22,20 @@ send_msg() {
 
 if [[ "$GITHUB_EVENT_NAME" == "issues" ]] ; then
 send_msg "
-❗️❗️❗️❗️❗️❗️
 
-Issue ${PR_STATE}
-
+[Issue ${PR_STATE}](https://github.com/${GITHUB_REPOSITORY}/issues/${IU_NUM})
 Issue Title and Number  : ${IU_TITLE} | #${IU_NUM}
 
 Commented or Created By : \`${IU_ACTOR}\`
 
 Issue Body : *${IU_BODY}*
 
-[Link to Issue]("https://github.com/${GITHUB_REPOSITORY}/issues/${IU_NUM}")
-
-[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
-
-[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+[Build log]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
 elif  [[ "$GITHUB_EVENT_NAME" == "issue_comment" ]] ; then
 send_msg "
-🗣🗣🗣🗣🗣🗣
 
-Issue ${PR_STATE}
-
+[Issue ${PR_STATE}](https://github.com/${GITHUB_REPOSITORY}/issues/${IU_NUM})
 Issue Title and Number  : ${IU_TITLE} | #${IU_NUM}
 
 Commented or Created By : \`${IU_ACTOR}\`
@@ -52,35 +44,27 @@ Issue Body : *${IU_BODY}*
 
 Issue Comment: \`${IU_COM}\`
 
-[Link to Issue]("https://github.com/${GITHUB_REPOSITORY}/issues/${IU_NUM}")
 
-[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
-
-[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+[Build log]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
 elif [[ "$GITHUB_EVENT_NAME" == "pull_request" ]] ; then
 send_msg "
-🔃🔀🔃🔀🔃🔀
 
-PR ${PR_STATE}
+[PR ${PR_STATE}]("https://github.com/${GITHUB_REPOSITORY}/pull/${PR_NUM}")
 
-PR Number:      ${PR_NUM}
+PR Title and Number  :      ${PR_NUM}
+Created By:          ${GITHUB_ACTOR}
 
-PR Title:       ${PR_TITLE}
 
 PR Body:        *${PR_BODY}*
 
-PR By:          ${GITHUB_ACTOR}
 
-[Link to Issue]("https://github.com/${GITHUB_REPOSITORY}/pull/${PR_NUM}")
 
-[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
-
-[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+[Build log]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
 elif  [[ "$GITHUB_EVENT_NAME" == "watch" ]] ; then
 send_msg "
-⭐️⭐️⭐️
+
 ID: ${GITHUB_WORKFLOW}
 
 Action was a *${status}!*
@@ -93,12 +77,11 @@ Star Count      ${STARGAZERS}
 
 Fork Count      ${FORKERS}
 
-[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+[Link]("https://github.com/${GITHUB_REPOSITORY}/")
 
 "
 elif [[ "$GITHUB_EVENT_NAME" == "schedule" ]] ; then
 send_msg "
-⏱⏰⏱⏰⏱⏰
 
 ID: ${GITHUB_WORKFLOW}
 
@@ -115,7 +98,6 @@ Action was a *${status}!*
 
 else
 send_msg "
-⬆️⇅⬆️⇅
 
 ID: ${GITHUB_WORKFLOW}
 
@@ -129,6 +111,6 @@ By:            *${GITHUB_ACTOR}*
 
 Tag:        ${GITHUB_REF}
 
-[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+[Link]("https://github.com/${GITHUB_REPOSITORY}/")
 "
 fi
