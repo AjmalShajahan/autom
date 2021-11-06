@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 # Get the token from Travis environment vars and build the bot URL:
-BOT_URL="https://api.telegram.org/bot${INPUT_TOKEN}/sendMessage"
+BOT_URL="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage"
 
 # Set formatting for the message. Can be either "Markdown" or "HTML"
 PARSE_MODE="Markdown"
@@ -13,15 +13,16 @@ status=$INPUT_STATUS
 # Send message to the bot with some pertinent details about the job
 # Note that for Markdown, you need to escape any backtick (inline-code)
 # characters, since they're reserved in bash
+
 send_msg() {
-    curl -s -X POST ${BOT_URL} -d chat_id=$INPUT_CHAT \
+    curl -s -X POST ${BOT_URL} -d chat_id=$CHAT_ID \
         -d text="$1" -d parse_mode=${PARSE_MODE}
 }
 
 send_msg "
 The DEPLOY Action was **${status}**
 ---
-The ${GITHUB_REF} is now deployed by ${GITHUB_ACTOR} 
+The ${GITHUB_REF} is now deployed by ${GITHUB_ACTOR}
 ---
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
